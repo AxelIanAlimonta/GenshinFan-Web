@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.cinzel{
+    font-family: 'Cinzel', serif;
+}
+
+.lato{
+    font-family: 'Lato', sans-serif;
+}

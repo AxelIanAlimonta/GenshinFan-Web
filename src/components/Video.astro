@@ -1,0 +1,58 @@
+---
+import { Image } from "astro:assets";
+import { obtenerMiniatura, obtenerIdVideo } from "../utils/youtubeVideoScripts";
+import botonPlay from "../assets/images/icons/play-btn-youtube.png";
+import type { Video } from "../types/Video";
+interface Props {
+  video: Video;
+  class?: string;
+}
+
+const { video, class: className } = Astro.props;
+---
+
+<div
+  class={`overflow-hidden rounded-lg relative ${className ? className : ""}`}
+>
+  <Image
+    src={obtenerMiniatura(video.url)}
+    alt={video.titulo}
+    width={400}
+    height={300}
+    class="w-full object-cover aspect-video rounded-lg video-thumbnail"
+  />
+
+  <div
+    class="absolute inset-0 flex justify-center items-center z-10 play-button-container"
+  >
+    <Image
+      src={botonPlay}
+      alt="Botón de reproducción"
+      class="w-16 h-16 cursor-pointer play-button"
+    />
+  </div>
+
+  <iframe
+    class="w-full aspect-video rounded-lg hidden video-iframe"
+    src={`https://www.youtube.com/embed/${obtenerIdVideo(video.url)}`}
+    title="YouTube video player"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+    referrerpolicy="strict-origin-when-cross-origin"
+    allowfullscreen></iframe>
+</div>
+<script>
+  const playButton = document.querySelector(".play-button");
+  const videoIframe = document.querySelector(".video-iframe");
+  const videoThumbnail = document.querySelector(".video-thumbnail");
+  const playButtonContainer = document.querySelector(".play-button-container");
+
+  if (playButton && videoIframe && videoThumbnail && playButtonContainer) {
+    playButton.addEventListener("click", () => {
+      videoIframe.classList.remove("hidden");
+      videoIframe.scrollIntoView({ behavior: "smooth" });
+      videoThumbnail.classList.add("hidden");
+      playButtonContainer.classList.add("hidden");
+    });
+  }
+</script>

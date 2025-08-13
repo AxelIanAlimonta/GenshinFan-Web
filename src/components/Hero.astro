@@ -1,0 +1,51 @@
+---
+import portada from "../assets/images/portada.jpg";
+import { Image } from "astro:assets";
+import btnPlay from "../assets/images/icons/play-btn-youtube.png";
+import type { Video as VideoType } from "../types/Video";
+import Video from "./Video.astro";
+const video: VideoType = {
+  titulo: "Video de prueba",
+  url: "https://youtu.be/rZ6C6iPuNfw?si=O37etDPD60wGOmD_",
+  fechaPublicacion: "2023-10-01",
+  personajeId: 1,
+  etiquetas: [],
+};
+---
+
+<div
+  class="w-full h-screen relative flex flex-col justify-center items-center md:items-end"
+>
+  <Image
+    src={portada}
+    alt="Portada"
+    class="w-full h-full object-[35%] object-cover absolute left-0 -z-50"
+    width={1920}
+    height={1080}
+  />
+  <div class="flex flex-col justify-center items-center gap-4 md:mr-10 md:max-w-1/2">
+    <h2
+      class="text-slate-100 text-3xl font-bold w-fit cinzel text-shadow [text-shadow:0_2px_6px_rgba(0,0,0,.35)] absolute top-30 text-center md:relative md:top-0 md:text-4xl"
+    >
+      Descubre cada rincón de Teyvat
+    </h2>
+    <a
+      href={video.url}
+      class="cursor-pointer md:hidden"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        src={btnPlay}
+        alt="Botón de reproducción"
+        class="mt-4 cursor-pointer"
+        id="play-button"
+        width={64}
+        height={64}
+      />
+    </a>
+    <Video video={video} class="w-[500px] max-w-full hidden md:flex" />
+  </div>
+</div>
+
+<script></script>

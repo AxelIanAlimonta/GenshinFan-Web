@@ -4,8 +4,8 @@ import logo from "../assets/images/logo.png";
 import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
 ---
 
-<div class="fixed w-full bg-gray-800">
-  <div class="bg-gray-800 flex p-4 items-center justify-between">
+<div class="w-full absolute top-0 bg-slate-900 z-10 p-1 pl-3 pr-3">
+  <div class="flex  items-center justify-between">
     <Image src={logo} alt="Logo" class="h-8 md:h-12 object-contain w-fit" />
     <nav class="hidden md:block">
       <ul class="flex gap-3 items-center">
@@ -15,12 +15,9 @@ import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
       </ul>
     </nav>
 
-    <MenuIcon
-      class="h-8 w-8 md:hidden cursor-pointer"
-      id="mobile-menu-button"
-    />
+    <MenuIcon class="h-8 w-8 md:hidden cursor-pointer mobile-menu-button" />
   </div>
-  <div class="hidden" id="mobile-menu">
+  <div class="hidden mobile-menu">
     <ul class="flex flex-col gap-2">
       <li><a class="p-3 text-white text-xl" href="/">Home</a></li>
       <li><a class="p-3 text-white text-xl" href="/about">About</a></li>
@@ -30,8 +27,8 @@ import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
 </div>
 
 <script>
-  const menuButton = document.getElementById("mobile-menu-button");
-  const mobileMenu = document.getElementById("mobile-menu");
+  const menuButton = document.querySelector(".mobile-menu-button");
+  const mobileMenu = document.querySelector(".mobile-menu");
 
   if (menuButton && mobileMenu) {
     menuButton.addEventListener("click", () => {
