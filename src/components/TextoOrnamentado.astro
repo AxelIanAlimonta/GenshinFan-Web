@@ -1,0 +1,27 @@
+---
+import Ornamento from "../assets/images/ornamento/ornamento-izq.svg";
+
+interface Props {
+  children: any;
+  fill?: string;
+  width?: number;
+  height?: number;
+}
+const { width, fill, height } = Astro.props;
+---
+
+<div class="flex justify-center items-center">
+  <Ornamento
+    class="w-full h-full"
+    width={width ? width : 100}
+    style={{ color: fill ? fill : "currentColor" }}
+    height={height ? height : 100}
+  />
+  <slot />
+  <Ornamento
+    class="rotate-180 scale-y-[-1] w-full h-full"
+    width={width ? width : 100}
+    style={{ color: fill ? fill : "currentColor" }}
+    height={height ? height : 100}
+  />
+</div>
