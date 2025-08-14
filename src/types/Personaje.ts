@@ -8,6 +8,7 @@ export interface Personaje {
     rareza: number;
     avatarURL: string;
     splashArtURL: string;
+    splashArtSinFondoURL: string;
     tarjetaURL: string;
     fechaLanzamiento: string;
     elementoId: number;
