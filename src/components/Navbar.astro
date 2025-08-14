@@ -4,14 +4,14 @@ import logo from "../assets/images/logo.png";
 import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
 ---
 
-<div class="w-full absolute top-0 bg-slate-900 z-10 p-1 pl-3 pr-3">
-  <div class="flex  items-center justify-between">
+<div class="w-full fixed top-0 bg-black/60 z-10 p-1 pl-3 pr-3 navbar">
+  <div class="flex items-center justify-between">
     <Image src={logo} alt="Logo" class="h-8 md:h-12 object-contain w-fit" />
     <nav class="hidden md:block">
       <ul class="flex gap-3 items-center">
-        <li><a class="text-white text-xl" href="/">Home</a></li>
-        <li><a class="text-white text-xl" href="/about">About</a></li>
-        <li><a class="text-white text-xl" href="/contact">Contact</a></li>
+        <li><a class="text-gray-200 text-xl" href="/">Home</a></li>
+        <li><a class="text-gray-200 text-xl" href="/about">About</a></li>
+        <li><a class="text-gray-200 text-xl" href="/contact">Contact</a></li>
       </ul>
     </nav>
 
@@ -19,9 +19,9 @@ import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
   </div>
   <div class="hidden mobile-menu">
     <ul class="flex flex-col gap-2">
-      <li><a class="p-3 text-white text-xl" href="/">Home</a></li>
-      <li><a class="p-3 text-white text-xl" href="/about">About</a></li>
-      <li><a class="p-3 text-white text-xl" href="/contact">Contact</a></li>
+      <li><a class="p-3 text-gray-200 text-xl" href="/">Home</a></li>
+      <li><a class="p-3 text-gray-200 text-xl" href="/about">About</a></li>
+      <li><a class="p-3 text-gray-200 text-xl" href="/contact">Contact</a></li>
     </ul>
   </div>
 </div>
@@ -29,10 +29,41 @@ import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
 <script>
   const menuButton = document.querySelector(".mobile-menu-button");
   const mobileMenu = document.querySelector(".mobile-menu");
+  const navbar = document.querySelector(".navbar") as HTMLElement;
 
   if (menuButton && mobileMenu) {
     menuButton.addEventListener("click", () => {
       mobileMenu.classList.toggle("hidden");
     });
   }
+
+  let lastIsAtTop: boolean | null = null;
+  function checkScroll() {
+    // Solo aplicar en pantallas menores a md (768px)
+    if (window.innerWidth < 768) {
+      const isAtTop = window.scrollY === 0;
+      if (navbar && isAtTop !== lastIsAtTop) {
+        navbar.style.display = isAtTop ? "none" : "";
+        lastIsAtTop = isAtTop;
+      }
+    } else {
+      // Restaurar el display si se cambia a pantalla md o mayor
+      if (navbar) navbar.style.display = "";
+      lastIsAtTop = null;
+    }
+  }
+
+  let ticking = false;
+  window.addEventListener("scroll", function () {
+    if (!ticking) {
+      window.requestAnimationFrame(function () {
+        checkScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  // También escuchar cambios de tamaño de pantalla
+  window.addEventListener("resize", checkScroll);
+  checkScroll();
 </script>
