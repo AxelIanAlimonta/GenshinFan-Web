@@ -1,0 +1,63 @@
+---
+import { Image } from "astro:assets";
+import type { Personaje } from "../../types/Personaje";
+import Boton from "../Boton.astro";
+interface Props {
+  personaje: Personaje;
+}
+
+const { personaje } = Astro.props;
+---
+
+<div
+  class="w-full h-screen flex justify-center items-center relative overflow-x-hidden"
+>
+  <Image
+    src={personaje.region.imagenURL}
+    alt={personaje.region.nombre}
+    width={1920}
+    height={1080}
+    class="absolute top-0 w-full h-full object-cover -z-10 blur-xs opacity-80 brightness-90"
+  />
+
+  <div
+    class="w-[90%] h-full flex flex-col justify-end md:justify-center items-start"
+  >
+    <Image
+      src={personaje.elemento.iconoURL}
+      alt={personaje.nombre}
+      width={1920}
+      height={1080}
+      class="w-20 h-20 object-contain grow flex flex-col justify-end object-bottom drop-shadow-2xl md:grow-0"
+    />
+    <div class="self-start flex flex-col justify-start items-start h-1/2">
+      <h2
+        class="cinzel text-center text-4xl font-black text-gray-100 text-shadow-black text-shadow-md md:text-6xl lg:text-8xl"
+      >
+        {personaje.nombre}
+      </h2>
+      <Image
+        src={personaje.animaciones[0].url}
+        alt={personaje.nombre}
+        width={1920}
+        height={1080}
+        class="object-cover w-60 rounded-2xl md:w-96 lg:w-[500px]"
+      />
+    </div>
+    <Image
+      src={personaje.splashArtSinFondoURL}
+      alt={personaje.nombre}
+      width={1920}
+      height={1080}
+      class="object-cover absolute w-full h-full -z-10 top-0 left-0 md:translate-x-48"
+    />
+    <a
+      href={`/personajes/${personaje.id}`}
+      class="absolute bottom-4 left-1/2 transform -translate-x-1/2 cursor-pointer"
+    >
+      <Boton class="md:text-3xl cursor-pointer">
+        Más sobre {personaje.nombre}
+      </Boton>
+    </a>
+  </div>
+</div>

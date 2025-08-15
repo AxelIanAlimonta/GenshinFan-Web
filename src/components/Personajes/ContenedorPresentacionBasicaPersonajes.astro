@@ -1,0 +1,17 @@
+---
+import { obtenerPersonajes } from "../../api/personajeApi";
+import type { Personaje } from "../../types/Personaje";
+import PresentacionBasicaPersonaje from "./PresentacionBasicaPersonaje.astro";
+const personajes: Personaje[] = await obtenerPersonajes();
+
+const personajesFiltrados = personajes
+  .filter((personaje) => personaje.rareza === 5)
+  .sort((a, b) => b.fechaLanzamiento.localeCompare(a.fechaLanzamiento))
+  .slice(0, 3);
+---
+
+{
+  personajesFiltrados.map((personaje) => (
+    <PresentacionBasicaPersonaje personaje={personaje} />
+  ))
+}
