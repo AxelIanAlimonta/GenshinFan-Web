@@ -10,7 +10,7 @@ const { personaje } = Astro.props;
 ---
 
 <div
-  class="w-full h-screen flex justify-center items-center relative overflow-x-hidden"
+  class="w-full h-screen flex flex-col justify-end items-start relative overflow-x-hidden"
 >
   <Image
     src={personaje.region.imagenURL}
@@ -20,44 +20,41 @@ const { personaje } = Astro.props;
     class="absolute top-0 w-full h-full object-cover -z-10 blur-xs opacity-80 brightness-90"
   />
 
-  <div
-    class="w-[90%] h-full flex flex-col justify-end md:justify-center items-start"
-  >
+  <div class="flex flex-col justify-end items-start gap-3 p-3">
     <Image
       src={personaje.elemento.iconoURL}
       alt={personaje.nombre}
       width={1920}
       height={1080}
-      class="w-20 h-20 object-contain grow flex flex-col justify-end object-bottom drop-shadow-2xl md:grow-0"
+      class="w-20 h-20 object-contain flex flex-col justify-end object-bottom drop-shadow-2xl"
     />
-    <div class="self-start flex flex-col justify-start items-start h-1/2">
-      <h2
-        class="cinzel text-center text-4xl font-black text-gray-100 text-shadow-black text-shadow-md md:text-6xl lg:text-8xl"
-      >
-        {personaje.nombre}
-      </h2>
-      <Image
-        src={personaje.animaciones[0].url}
-        alt={personaje.nombre}
-        width={1920}
-        height={1080}
-        class="object-cover w-60 rounded-2xl md:w-96 lg:w-[500px]"
-      />
-    </div>
+    <h2
+      class="cinzel text-center text-4xl font-black text-gray-100 text-shadow-black text-shadow-md md:text-6xl lg:text-8xl"
+    >
+      {personaje.nombre}
+    </h2>
     <Image
-      src={personaje.splashArtSinFondoURL}
+      src={personaje.animaciones[0].url}
       alt={personaje.nombre}
       width={1920}
       height={1080}
-      class="object-cover absolute w-full h-full -z-10 top-0 left-0 md:translate-x-48"
+      class="object-cover w-60 rounded-2xl md:w-96 lg:w-[500px]"
     />
-    <a
-      href={`/personajes/${personaje.id}`}
-      class="absolute bottom-4 left-1/2 transform -translate-x-1/2 cursor-pointer"
-    >
-      <Boton class="md:text-3xl cursor-pointer">
-        Más sobre {personaje.nombre}
-      </Boton>
-    </a>
   </div>
+  <a
+    href={`/personajes/${personaje.id}`}
+    class="cursor-pointer self-center mb-3"
+  >
+    <Boton class="md:text-3xl cursor-pointer">
+      Más sobre {personaje.nombre}
+    </Boton>
+  </a>
+
+  <Image
+    src={personaje.splashArtSinFondoURL}
+    alt={personaje.nombre}
+    width={1920}
+    height={1080}
+    class="object-cover absolute w-full h-full -z-10 top-0 left-0 md:translate-x-48"
+  />
 </div>
