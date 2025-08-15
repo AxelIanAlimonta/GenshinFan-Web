@@ -1,10 +1,8 @@
 ---
-import portada from "../assets/images/portada.jpg";
 import logo from "../assets/images/logo.png";
 import { Image } from "astro:assets";
 import btnPlayBlanco from "../assets/images/icons/play-btn-blanco.png";
 import type { Video as VideoType } from "../types/Video";
-import Video from "./Video.astro";
 import TextoOrnamentado from "./TextoOrnamentado.astro";
 
 const video: VideoType = {
@@ -18,7 +16,7 @@ const video: VideoType = {
 
 <div class="w-full h-screen relative flex flex-col justify-evenly items-center">
   <video
-    src="/public/portada-video.mp4"
+    src="/portada-video.mp4"
     class="w-full h-full object-cover object-[35%] absolute left-0 -z-50"
     autoplay
     loop
