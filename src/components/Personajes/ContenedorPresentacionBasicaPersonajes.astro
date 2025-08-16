@@ -10,8 +10,31 @@ const personajesFiltrados = personajes
   .slice(0, 3);
 ---
 
-{
-  personajesFiltrados.map((personaje) => (
-    <PresentacionBasicaPersonaje personaje={personaje} />
-  ))
-}
+<div class="swiper w-full h-screen">
+  <div class="swiper-wrapper">
+    {
+      personajesFiltrados.map((personaje) => (
+        <div class="swiper-slide">
+          <PresentacionBasicaPersonaje personaje={personaje} />
+        </div>
+      ))
+    }
+  </div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" is:inline
+></script>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    new Swiper(".swiper", {
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      grabCursor: true
+    });
+  });
+</script>
