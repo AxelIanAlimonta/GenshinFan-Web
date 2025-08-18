@@ -10,7 +10,7 @@ const personajesFiltrados = personajes
   .slice(0, 3);
 ---
 
-<div class="swiper w-full h-screen">
+<div class="swiper swiper-presentacionPersonajes w-full h-screen">
   <div class="swiper-wrapper">
     {
       personajesFiltrados.map((personaje) => (
@@ -24,11 +24,10 @@ const personajesFiltrados = personajes
   <div class="swiper-button-prev"></div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js" is:inline
-></script>
+
 <script is:inline>
   document.addEventListener("DOMContentLoaded", () => {
-    new Swiper(".swiper", {
+    new Swiper(".swiper-presentacionPersonajes", {
       loop: true,
       navigation: {
         nextEl: ".swiper-button-next",

@@ -1,0 +1,60 @@
+---
+import { Image } from "astro:assets";
+import TextoOrnamentado from "../TextoOrnamentado.astro";
+import Video from "../Video.astro";
+import type { Video as VideoType } from "../../types/Video";
+import { obtenerVideos } from "../../api/videoApi";
+
+const videos: VideoType[] = await obtenerVideos();
+
+//filtrar videos para mostrar solo los ultimos 5 videos, ordenados por fechaPublicacion
+
+const videosFiltrados = videos
+  .sort(
+    (a, b) =>
+      new Date(b.fechaPublicacion).getTime() -
+      new Date(a.fechaPublicacion).getTime()
+  )
+  .slice(0, 5);
+---
+
+<div
+  class="w-full h-screen relative p-4 overflow-hidden flex flex-col justify-center items-center gap-4"
+>
+  <TextoOrnamentado width={100} height={50} fill="white">
+    <h2 class="text-2xl font-bold text-white cinzel p-3">Videos</h2>
+  </TextoOrnamentado>
+
+  <div class="swiper swiper-videosPresentacion w-[90%] md:w-[650px]">
+    <div class="swiper-wrapper w-full h-full">
+      {
+        videosFiltrados.map((video) => (
+          <Video video={video} class="swiper-slide w-full h-full" />
+        ))
+      }
+    </div>
+  </div>
+  <div class="swiper-pagination" style="position: static;"></div>
+
+  <Image
+    src="https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20210211/2021021114240369279.png"
+    alt="Fondo"
+    width={1920}
+    height={1080}
+    class="w-full h-full absolute top-0 left-0 -z-10 object-cover blur-xs overflow-hidden scale-105 object-center"
+  />
+</div>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    var swiper = new Swiper(".swiper-videosPresentacion", {
+      loop: true,
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      pagination: {
+        el: ".swiper-pagination",
+      },
+    });
+  });
+</script>
