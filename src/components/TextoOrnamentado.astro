@@ -6,20 +6,20 @@ interface Props {
   fill?: string;
   width?: number;
   height?: number;
+  class?: string;
 }
-const { width, fill, height } = Astro.props;
+const { width, fill, height, class: className } = Astro.props;
 ---
 
-<div class="flex justify-center items-center">
+<div class={`flex justify-center items-center ${className ? className : ""}`}>
   <Ornamento
-    class="w-full h-full"
     width={width ? width : 100}
     style={{ color: fill ? fill : "currentColor" }}
     height={height ? height : 100}
   />
   <slot />
   <Ornamento
-    class="rotate-180 scale-y-[-1] w-full h-full"
+    class="rotate-180 scale-y-[-1]"
     width={width ? width : 100}
     style={{ color: fill ? fill : "currentColor" }}
     height={height ? height : 100}
