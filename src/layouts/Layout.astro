@@ -11,6 +11,10 @@ import Navbar from "../components/Navbar.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link
       rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.css"
+    />
+    <link
+      rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"
     />
     <meta name="generator" content={Astro.generator} />
@@ -23,10 +27,21 @@ import Navbar from "../components/Navbar.astro";
   <body>
     <Navbar />
     <slot />
+    <script
+      src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"
+      is:inline></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.0/dist/fancybox/fancybox.umd.js"
+      is:inline></script>
+    <script is:inline>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (window.Fancybox) {
+          Fancybox.bind("[data-fancybox]", {});
+        }
+      });
+    </script>
   </body>
-  <script
-    src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"
-    is:inline></script>
 </html>
 
 <style>
