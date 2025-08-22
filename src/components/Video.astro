@@ -1,6 +1,8 @@
 ---
 import type { Video } from "../types/Video";
+import botonPlay from "../assets/images/icons/play-btn-blanco.png";
 import { obtenerMiniatura } from "../utils/youtubeVideoScripts";
+import { Image } from "astro:assets";
 interface Props {
   video: Video;
   class?: string;
@@ -9,7 +11,7 @@ const { video, class: className } = Astro.props;
 ---
 
 <div
-  class={`aspect-video overflow-hidden object-cover object-center inline-block rounded ${className}`}
+  class={`aspect-video overflow-hidden object-cover object-center inline-block rounded relative ${className}`}
 >
   <a href={video.url} data-fancybox data-width="100%" data-height="100%">
     <img
@@ -18,6 +20,11 @@ const { video, class: className } = Astro.props;
       width="240"
       height="180"
       class="object-cover w-full h-full"
+    />
+    <Image
+      src={botonPlay}
+      alt="Logo"
+      class="w-20 h-fit absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 opacity-75"
     />
   </a>
 </div>
