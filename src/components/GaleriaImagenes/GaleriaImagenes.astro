@@ -1,0 +1,16 @@
+---
+import type { Imagen } from '../../types/Imagen';
+import ImagenDeGaleria from './ImagenDeGaleria.astro';
+
+interface Props {
+  imagenes: Imagen[];
+}
+
+const { imagenes } = Astro.props;
+---
+
+<div class="flex gap-3 p-3 flex-wrap">
+    {imagenes.map(imagen => (
+        <ImagenDeGaleria imagen={imagen} class='h-[250px] overflow-hidden grow'/>
+    ))}
+</div>

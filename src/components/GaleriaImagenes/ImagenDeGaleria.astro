@@ -1,0 +1,14 @@
+---
+import type { Imagen } from "../../types/Imagen";
+
+interface Props {
+  imagen: Imagen;
+  class?: string;
+}
+
+const { imagen, class: className } = Astro.props;
+---
+
+<a data-fancybox="gallery" data-src={imagen.url} class={className}>
+  <img src={imagen.url}  alt="imagen" class="rounded object-cover w-full h-full cursor-pointer"/>
+</a>
