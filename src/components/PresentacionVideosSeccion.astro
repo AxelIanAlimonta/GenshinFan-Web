@@ -1,9 +1,9 @@
 ---
 import { Image } from "astro:assets";
-import TextoOrnamentado from "../TextoOrnamentado.astro";
-import Video from "../Video.astro";
-import type { Video as VideoType } from "../../types/Video";
-import { obtenerVideos } from "../../api/videoApi";
+import TextoOrnamentado from "./TextoOrnamentado.astro";
+import Video from "./Video.astro";
+import type { Video as VideoType } from "../types/Video";
+import { obtenerVideos } from "../api/videoApi";
 
 const videos: VideoType[] = await obtenerVideos();
 
