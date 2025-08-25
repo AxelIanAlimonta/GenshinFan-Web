@@ -1,7 +1,20 @@
 ---
+import TextoOrnamentado from "../components/TextoOrnamentado.astro";
 import Layout from "../layouts/Layout.astro";
+import { obtenerVideos } from "../api/videoApi";
+import type { Video as TipoVideo } from "../types/Video";
+import Video from "../components/Video.astro";
+
+let videos: TipoVideo[] = await obtenerVideos();
 ---
 
 <Layout>
-  <h2>Videos</h2>
+  <div class="mt-10 p-4">
+    <TextoOrnamentado>
+      <h2 class="text-2xl font-bold text-white cinzel">Videos</h2>
+    </TextoOrnamentado>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {videos.map((video) => <Video video={video} />)}
+    </div>
+  </div>
 </Layout>
