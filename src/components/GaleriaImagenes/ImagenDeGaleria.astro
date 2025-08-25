@@ -10,5 +10,6 @@ const { imagen, class: className } = Astro.props;
 ---
 
 <a data-fancybox="gallery" data-src={imagen.url} class={className}>
-  <img src={imagen.url}  alt="imagen" class="rounded object-cover w-full h-full cursor-pointer"/>
+  <img src={imagen.url}  alt="imagen" class="rounded object-cover w-full h-full cursor-pointer"
+  loading="lazy"/>
 </a>
