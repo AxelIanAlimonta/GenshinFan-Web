@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { obtenerImagenes } from "../api/imagenApi";
+import type { Imagen } from "../types/Imagen";
+import GaleriaImagenes from "../components/GaleriaImagenes/GaleriaImagenes.astro";
+import TextoOrnamentado from "../components/TextoOrnamentado.astro";
+let imagenes: Imagen[] = await obtenerImagenes();
+
+//ordenar por calificacion de mayor a menor
+imagenes.sort((a, b) => b.calificacion - a.calificacion);
+---
+
+<Layout>
+  <div class="min-h-screen pt-16">
+    <TextoOrnamentado class="text-2xl font-bold cinzel"
+      >Galeria de Imagenes</TextoOrnamentado
+    >
+
+    <GaleriaImagenes imagenes={imagenes} />
+  </div>
+</Layout>
