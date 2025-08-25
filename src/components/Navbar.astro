@@ -4,66 +4,41 @@ import logo from "../assets/images/logo.png";
 import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
 ---
 
-<div class="w-full fixed top-0 bg-black/60 z-10 p-1 pl-3 pr-3 navBar">
-  <div class="flex items-center justify-between">
-    <a href="/" class="h-8 md:h-12 object-contain w-fit">
-      <Image src={logo} alt="Logo" class="h-8 md:h-12 object-contain w-fit" />
-    </a>
-    <nav class="hidden md:block">
-      <ul class="flex gap-3 items-center">
-        <li><a class="text-gray-200 text-xl" href="/">Home</a></li>
-        <li><a class="text-gray-200 text-xl" href="/personajes">Personajes</a></li>
-        <li><a class="text-gray-200 text-xl" href="/imagenes">Imagenes</a></li>
-        <li><a class="text-gray-200 text-xl" href="/videos">Videos</a></li>
-      </ul>
-    </nav>
-
-    <MenuIcon class="h-8 w-8 md:hidden cursor-pointer mobile-menu-button" />
+<div class="navbar fixed top-0 bg-black/60 z-10 p-1 pl-3 pr-3 shadow-sm">
+  <div class="flex-1">
+    <a class="btn btn-ghost text-xl"
+      ><Image src={logo} alt="Logo" class="h-12 object-contain w-fit" /></a
+    >
   </div>
-  <div class="hidden mobile-menu">
-    <ul class="flex flex-col gap-2">
-      <li><a class="p-3 text-gray-200 text-xl" href="/">Home</a></li>
-      <li><a class="p-3 text-gray-200 text-xl" href="/about">About</a></li>
-      <li><a class="p-3 text-gray-200 text-xl" href="/contact">Contact</a></li>
+  <div class="hidden md:flex">
+    <ul class="menu menu-horizontal px-1">
+      <li><a class="text-gray-200 text-xl" href="/">Home</a></li>
+      <li>
+        <a class="text-gray-200 text-xl" href="/personajes">Personajes</a>
+      </li>
+      <li><a class="text-gray-200 text-xl" href="/imagenes">Imagenes</a></li>
+      <li><a class="text-gray-200 text-xl" href="/videos">Videos</a></li>
+    </ul>
+  </div>
+
+  <div class="dropdown dropdown-end md:hidden">
+    <label tabindex="0" class="btn btn-ghost btn-circle">
+      <Image
+        src={MenuIcon}
+        alt="Menu Icon"
+        class="h-8 w-8 md:hidden cursor-pointer mobile-menu-button"
+      />
+    </label>
+    <ul
+      tabindex="0"
+      class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-black/60 rounded-box w-52"
+    >
+       <li><a class="text-gray-200 text-xl" href="/">Home</a></li>
+      <li>
+        <a class="text-gray-200 text-xl" href="/personajes">Personajes</a>
+      </li>
+      <li><a class="text-gray-200 text-xl" href="/imagenes">Imagenes</a></li>
+      <li><a class="text-gray-200 text-xl" href="/videos">Videos</a></li>
     </ul>
   </div>
 </div>
-
-<script>
-  const menuButton = document.querySelector(".mobile-menu-button");
-  const mobileMenu = document.querySelector(".mobile-menu");
-  const navBar = document.querySelector(".navBar") as HTMLElement;
-
-  if (menuButton && mobileMenu) {
-    menuButton.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-    });
-  }
-
-  let lastIsAtTop: boolean | null = null;
-  function checkScroll() {
-    if (window.innerWidth < 768) {
-      const isAtTop = window.scrollY === 0;
-      if (navBar && isAtTop !== lastIsAtTop) {
-        navBar.style.display = isAtTop ? "none" : "";
-        lastIsAtTop = isAtTop;
-      }
-    } else {
-      if (navBar) navBar.style.display = "";
-      lastIsAtTop = null;
-    }
-  }
-
-  let ticking = false;
-  window.addEventListener("scroll", function () {
-    if (!ticking) {
-      window.requestAnimationFrame(function () {
-        checkScroll();
-        ticking = false;
-      });
-      ticking = true;
-    }
-  });
-  window.addEventListener("resize", checkScroll);
-  checkScroll();
-</script>
