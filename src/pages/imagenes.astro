@@ -4,6 +4,7 @@ import { obtenerImagenes } from "../api/imagenApi";
 import type { Imagen } from "../types/Imagen";
 import GaleriaImagenes from "../components/GaleriaImagenes/GaleriaImagenes.astro";
 import TextoOrnamentado from "../components/TextoOrnamentado.astro";
+import { Image } from "astro:assets";
 let imagenes: Imagen[] = await obtenerImagenes();
 
 //ordenar por calificacion de mayor a menor
@@ -11,11 +12,18 @@ imagenes.sort((a, b) => b.calificacion - a.calificacion);
 ---
 
 <Layout>
-  <div class="min-h-screen pt-16">
+  <div class="min-h-screen pt-16 relative">
     <TextoOrnamentado class="text-2xl font-bold cinzel text-center"
       >Galería de Imágenes</TextoOrnamentado
     >
 
     <GaleriaImagenes imagenes={imagenes} />
+    <Image
+      src="https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20210211/2021021114240369279.png"
+      alt="Genshin Impact"
+      width={1920}
+      height={1080}
+      class="w-screen h-screen fixed -z-10 top-0 left-0 blur-xs"
+    />
   </div>
 </Layout>
