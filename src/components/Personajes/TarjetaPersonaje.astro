@@ -1,0 +1,25 @@
+---
+import { Image } from "astro:assets";
+import type { Personaje } from "../../types/Personaje";
+interface Props {
+  personaje: Personaje;
+  class?: string;
+}
+
+const { personaje, class: className } = Astro.props;
+---
+
+<div class={`rounded overflow-hidden relative cursor-pointer ${className}`}>
+  <h2
+    class="absolute text-center left-1/2 -translate-x-1/2 bottom-8 cinzel font-bold text-2xl text-white bg-black/50 rounded p-1"
+  >
+    {personaje.nombre}
+  </h2>
+  <Image
+    src={personaje.tarjetaURL}
+    alt={personaje.nombre}
+    width={1080}
+    height={1920}
+    class="w-full h-full object-cover"
+  />
+</div>
