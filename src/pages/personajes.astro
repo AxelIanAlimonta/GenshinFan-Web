@@ -1,7 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import type { Personaje } from "../types/Personaje";
+import { obtenerPersonajes } from "../api/personajeApi";
+import TarjetaPersonaje from "../components/Personajes/TarjetaPersonaje.astro";
+import TextoOrnamentado from "../components/TextoOrnamentado.astro";
+import { Image } from "astro:assets";
+const personajes: Personaje[] = await obtenerPersonajes();
 ---
 
 <Layout>
-  <h2>Personajes</h2>
+  <div class="mt-12 relative">
+    <TextoOrnamentado
+      ><h2 class="text-2xl font-bold cinzel">Personajes</h2></TextoOrnamentado
+    >
+    <div class="flex p-5 gap-5 flex-wrap justify-center items-center">
+      {
+        personajes.map((personaje) => (
+          <TarjetaPersonaje personaje={personaje} class="w-[250px] h-[500px]" />
+        ))
+      }
+    </div>
+    <Image
+      src="https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20210211/2021021114240369279.png"
+      alt="Genshin Impact"
+      width={1920}
+      height={1080}
+      class="w-screen h-screen fixed -z-10 top-0 left-0 blur-xs"
+    />
+  </div>
 </Layout>
