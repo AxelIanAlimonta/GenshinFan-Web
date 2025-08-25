@@ -28,11 +28,13 @@ const personajesFiltrados = personajes
   .swiper-button-next,
   .swiper-button-prev {
     color: #fff;
-    text-shadow: 0 2px 8px #000, 0 0px 2px #333; /* Sombra para mejor visibilidad */
+    text-shadow:
+      0 2px 8px #000,
+      0 0px 2px #333; /* Sombra para mejor visibilidad */
   }
 </style>
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
+  function inicializarSwiper() {
     new Swiper(".swiper-presentacionPersonajes", {
       loop: true,
       navigation: {
@@ -41,5 +43,7 @@ const personajesFiltrados = personajes
       },
       grabCursor: true,
     });
-  });
+  }
+
+  document.addEventListener("astro:page-load", inicializarSwiper);
 </script>

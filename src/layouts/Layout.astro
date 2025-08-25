@@ -40,11 +40,13 @@ import { ClientRouter } from "astro:transitions";
       is:inline></script>
 
     <script is:inline>
-      document.addEventListener("DOMContentLoaded", function () {
+      function inicializarFancybox() {
         if (window.Fancybox) {
           Fancybox.bind("[data-fancybox]", {});
         }
-      });
+      }
+
+      document.addEventListener("astro:page-load", inicializarFancybox);
     </script>
   </body>
 </html>

@@ -45,8 +45,8 @@ const videosFiltrados = videos
   />
 </div>
 <script is:inline>
-  document.addEventListener("DOMContentLoaded", () => {
-    var swiper = new Swiper(".swiper-videosPresentacion", {
+  function inicializarSwiper() {
+    new Swiper(".swiper-videosPresentacion", {
       loop: true,
       navigation: {
         nextEl: ".swiper-button-next",
@@ -56,5 +56,7 @@ const videosFiltrados = videos
         el: ".swiper-pagination",
       },
     });
-  });
+  }
+
+  document.addEventListener("astro:page-load", inicializarSwiper);
 </script>
