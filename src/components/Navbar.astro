@@ -6,7 +6,9 @@ import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
 
 <div class="w-full fixed top-0 bg-black/60 z-10 p-1 pl-3 pr-3 navBar">
   <div class="flex items-center justify-between">
-    <Image src={logo} alt="Logo" class="h-8 md:h-12 object-contain w-fit" />
+    <a href="/" class="h-8 md:h-12 object-contain w-fit">
+      <Image src={logo} alt="Logo" class="h-8 md:h-12 object-contain w-fit" />
+    </a>
     <nav class="hidden md:block">
       <ul class="flex gap-3 items-center">
         <li><a class="text-gray-200 text-xl" href="/">Home</a></li>
@@ -39,7 +41,6 @@ import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
 
   let lastIsAtTop: boolean | null = null;
   function checkScroll() {
-    // Solo aplicar en pantallas menores a md (768px)
     if (window.innerWidth < 768) {
       const isAtTop = window.scrollY === 0;
       if (navBar && isAtTop !== lastIsAtTop) {
@@ -47,7 +48,6 @@ import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
         lastIsAtTop = isAtTop;
       }
     } else {
-      // Restaurar el display si se cambia a pantalla md o mayor
       if (navBar) navBar.style.display = "";
       lastIsAtTop = null;
     }
@@ -63,7 +63,6 @@ import MenuIcon from "../assets/images/icons/menu-hamburguesa.svg";
       ticking = true;
     }
   });
-  // También escuchar cambios de tamaño de pantalla
   window.addEventListener("resize", checkScroll);
   checkScroll();
 </script>
