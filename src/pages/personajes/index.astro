@@ -1,9 +1,9 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import type { Personaje } from "../types/Personaje";
-import { obtenerPersonajes } from "../api/personajeApi";
-import TarjetaPersonaje from "../components/Personajes/TarjetaPersonaje.astro";
-import TextoOrnamentado from "../components/TextoOrnamentado.astro";
+import Layout from "../../layouts/Layout.astro";
+import type { Personaje } from "../../types/Personaje";
+import { obtenerPersonajes } from "../../api/personajeApi";
+import TarjetaPersonaje from "../../components/Personajes/TarjetaPersonaje.astro";
+import TextoOrnamentado from "../../components/TextoOrnamentado.astro";
 import { Image } from "astro:assets";
 const personajes: Personaje[] = await obtenerPersonajes();
 ---
@@ -16,7 +16,13 @@ const personajes: Personaje[] = await obtenerPersonajes();
     <div class="flex p-5 gap-5 flex-wrap justify-center items-center">
       {
         personajes.map((personaje) => (
-          <TarjetaPersonaje personaje={personaje} class="w-[250px] h-[500px]" />
+          <a href={`/personajes/${personaje.id}`}>
+            <TarjetaPersonaje
+              personaje={personaje}
+              class="w-[250px] h-[500px]"
+              transition:name={"tarjeta-" + personaje.id}
+            />
+          </a>
         ))
       }
     </div>

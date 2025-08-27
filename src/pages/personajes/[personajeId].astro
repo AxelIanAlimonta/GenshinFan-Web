@@ -1,0 +1,109 @@
+---
+import type { Personaje } from "../../types/Personaje";
+import {
+  obtenerPersonajes,
+  obtenerPersonajePorId,
+} from "../../api/personajeApi";
+import Layout from "../../layouts/Layout.astro";
+import TarjetaPersonaje from "../../components/Personajes/TarjetaPersonaje.astro";
+import AnimacionGaleria from "../../components/GaleriaImagenes/AnimacionDeGaleria.astro";
+import { Image } from "astro:assets";
+import GaleriaImagenes from "../../components/GaleriaImagenes/GaleriaImagenes.astro";
+import TextoOrnamentado from "../../components/TextoOrnamentado.astro";
+import Video from "../../components/Video.astro";
+
+export async function getStaticPaths() {
+  const personajes: Personaje[] = await obtenerPersonajes();
+  return personajes.map((personaje) => ({
+    params: { personajeId: personaje.id.toString() },
+  }));
+}
+
+const { personajeId } = Astro.params;
+const personaje: Personaje = await obtenerPersonajePorId(personajeId);
+---
+
+<Layout>
+  <div
+    class="mt-20 min-h-screen flex flex-wrap justify-center items-center p-3 gap-5 md:items-start"
+  >
+    <div
+      class="flex flex-wrap flex-col justify-center items-center md:flex-row md:items-start"
+    >
+      <TarjetaPersonaje
+        personaje={personaje}
+        class="w-[250px] h-[500px]"
+        transition:name={"tarjeta-" + personaje.id}
+      />
+      <div
+        class="flex flex-wrap justify-center items-center p-3 gap-5 md:w-1/2 md:grow"
+      >
+        <div class="flex flex-col justify-center items-center gap-3">
+          <h2 class="text-3xl text-center font-bold cinzel">
+            {personaje.nombre}
+            <Image
+              src={personaje.elemento.iconoURL}
+              alt={personaje.elemento.nombre}
+              width={32}
+              height={32}
+              class="inline-block"
+
+            />
+          </h2>
+          <p>{personaje.descripcion}</p>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold cinzel text-center">Animaciones</h3>
+          <div
+            class="flex justify-center items-center flex-wrap gap-3 md:flex-row"
+          >
+            {
+              personaje.animaciones.map((animacion) => (
+                <AnimacionGaleria
+                  animacion={animacion}
+                  nombreDeGaleria="galeria-animaciones"
+                  class="h-[200px] grow md:h-[120px] lg:h-[150px] md:grow-0"
+                />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex flex-col justify-center items-center p-3">
+      <TextoOrnamentado
+        ><h3 class="text-xl font-bold cinzel text-center">
+          Galeria de Imágenes
+        </h3></TextoOrnamentado
+      >
+      <GaleriaImagenes imagenes={personaje.imagenes} />
+    </div>
+
+    <div class="">
+      <TextoOrnamentado
+        ><h3 class="text-xl font-bold cinzel text-center">
+          Galeria de Videos
+        </h3></TextoOrnamentado
+      >
+      <div class="flex flex-wrap justify-center items-center gap-3">
+        {
+          personaje.videos.map((video) => (
+            <Video
+              video={video}
+              class="w-[250px] aspect-video flex-grow md:max-w-[400px]"
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <Image
+      src="https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20210211/2021021114240369279.png"
+      alt="Genshin Impact"
+      width={1920}
+      height={1080}
+      class="w-screen h-screen fixed -z-10 top-0 left-0 blur-xs"
+    />
+  </div>
+</Layout>
