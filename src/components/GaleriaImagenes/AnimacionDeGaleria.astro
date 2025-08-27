@@ -1,0 +1,24 @@
+---
+import type { Animacion } from "../../types/Animacion";
+
+interface Props {
+  animacion: Animacion;
+  nombreDeGaleria: string;
+  class?: string;
+}
+
+const { animacion, class: className, nombreDeGaleria } = Astro.props;
+---
+
+<a
+  data-fancybox={nombreDeGaleria}
+  data-src={animacion.url}
+  class={"inline-block " + className}
+>
+  <img
+    src={animacion.url}
+    alt="animacion"
+    class="rounded object-cover w-full h-full cursor-pointer"
+    loading="lazy"
+  />
+</a>
