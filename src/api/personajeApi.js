@@ -9,4 +9,12 @@ const obtenerPersonajes = async () => {
     return response.json();
 };
 
-export { obtenerPersonajes };
+const obtenerPersonajePorId = async (id) => {
+    const response = await fetch(`${url}/${id}`);
+    if (!response.ok) {
+        throw new Error("Error al obtener personaje");
+    }
+    return response.json();
+};
+
+export { obtenerPersonajes, obtenerPersonajePorId };
