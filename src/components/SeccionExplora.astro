@@ -1,0 +1,84 @@
+---
+import { Image } from "astro:assets";
+import TextoOrnamentado from "./TextoOrnamentado.astro";
+---
+
+<div class="relative overflow-hidden">
+  <TextoOrnamentado>
+    <span class="text-3xl cinzel font-bold text-shadow-black text-shadow-xs"
+      >Explora</span
+    >
+  </TextoOrnamentado>
+
+  <div
+    class="flex p-3 gap-3 flex-wrap justify-center items-center"
+  >
+    <a href="" class="inline-block flex-grow">
+      <div
+        class="p-3 rounded relative overflow-hidden h-[150px] md:h-[200px] flex flex-row justify-start items-center"
+      >
+        <h3
+          class="text-3xl font-bold text-white z-10 text-shadow-black text-shadow-sm"
+        >
+          Personajes
+        </h3>
+
+        <Image
+          src="https://upload-os-bbs.hoyolab.com/upload/2024/01/09/21468771/19d010dfa480a0f32e25d56333b4a52c_2303147323975118349.jpeg"
+          alt="Fondo"
+          width={1920}
+          height={1080}
+          class="w-screen h-full absolute top-0 left-0 object-cover overflow-hidden object-center -z-10"
+        />
+      </div>
+    </a>
+
+    <a href="" class="inline-block flex-grow">
+      <div
+        class="p-3 rounded relative overflow-hidden h-[150px] md:h-[200px] flex flex-row justify-start items-center"
+      >
+        <h3
+          class="text-3xl font-bold text-white z-10 text-shadow-black text-shadow-xs"
+        >
+          Imágenes
+        </h3>
+
+        <Image
+          src="https://upload-os-bbs.hoyolab.com/upload/2024/11/03/186395557/2b39e0b004d7e79a2db7800c1c0fd180_114644151902534126.jpg?x-oss-process=image%2Fresize%2Cs_1000%2Fauto-orient%2C0%2Finterlace%2C1%2Fformat%2Cwebp%2Fquality%2Cq_70"
+          alt="Fondo"
+          width={1920}
+          height={1080}
+          class="w-screen h-full absolute top-0 left-0 object-cover overflow-hidden object-center -z-10"
+        />
+      </div>
+    </a>
+
+    <a href="" class="inline-block flex-grow">
+      <div
+        class="p-3 rounded relative overflow-hidden h-[150px] md:h-[200px] flex flex-row justify-start items-center"
+      >
+        <h3
+          class="text-3xl font-bold text-white z-10 text-shadow-black text-shadow-xs"
+        >
+          Videos
+        </h3>
+
+        <Image
+          src="https://upload-os-bbs.hoyolab.com/upload/2022/08/11/903eca3997ab904d79101bdc1f3ae532_1774877059646179251.jpg?x-oss-process=image%2Fresize%2Cs_1000%2Fauto-orient%2C0%2Finterlace%2C1%2Fformat%2Cwebp%2Fquality%2Cq_70"
+          alt="Fondo"
+          width={1920}
+          height={1080}
+          class="w-screen h-full absolute top-0 left-0 object-cover overflow-hidden object-center -z-10"
+        />
+      </div>
+    </a>
+  </div>
+
+  <Image
+    src="https://upload-os-bbs.hoyolab.com/upload/2024/11/03/186395557/faf832b8e71000a5e3bd34936eb81f51_6784158588311652339.jpg?x-oss-process=image%2Fresize%2Cs_1000%2Fauto-orient%2C0%2Finterlace%2C1%2Fformat%2Cwebp%2Fquality%2Cq_70"
+    alt="Fondo"
+    width={1280}
+    height={720}
+    class="w-screen h-full absolute top-0 left-0 -z-20 object-cover blur-xs overflow-hidden scale-110 object-center"
+  />
+</div>
