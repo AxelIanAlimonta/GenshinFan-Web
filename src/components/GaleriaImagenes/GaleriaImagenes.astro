@@ -11,6 +11,6 @@ const { imagenes } = Astro.props;
 
 <div class="flex gap-3 p-3 flex-wrap">
     {imagenes.map(imagen => (
-        <ImagenDeGaleria imagen={imagen} class='h-[230px] overflow-hidden grow'/>
+        <ImagenDeGaleria imagen={imagen} class='h-[230px] overflow-hidden grow max-w-[460px]'/>
     ))}
 </div>
