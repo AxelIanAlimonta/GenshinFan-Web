@@ -44,8 +44,11 @@ const { personaje } = Astro.props;
     />
   </div>
 
-
-  <button class="btn btn-neutral self-center mb-3 md:text-xl opacity-90">Más sobre {personaje.nombre}</button>
+  <a href={`/personajes/${personaje.id}`} class="self-center mb-3"
+    ><button class="btn btn-neutral md:text-xl opacity-90"
+      >Más sobre {personaje.nombre}</button
+    ></a
+  >
 
   <Image
     src={personaje.splashArtSinFondoURL}
