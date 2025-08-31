@@ -13,11 +13,7 @@ const { personaje, class: className, ...props } = Astro.props;
   class={`rounded overflow-hidden relative cursor-pointer ${className}`}
   {...props}
 >
-  <h2
-    class="absolute text-center left-1/2 -translate-x-1/2 bottom-8 cinzel font-bold text-2xl text-white bg-black/50 rounded p-1"
-  >
-    {personaje.nombre}
-  </h2>
+
   <Image
     src={personaje.tarjetaURL}
     alt={personaje.nombre}
