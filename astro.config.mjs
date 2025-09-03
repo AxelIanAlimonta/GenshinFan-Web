@@ -9,6 +9,5 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
   site: 'https://AxelIanAlimonta.github.io/GenshinFan',
-  base: '/GenshinFan/'
   
 });
