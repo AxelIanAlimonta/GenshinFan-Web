@@ -26,15 +26,10 @@ const personaje: Personaje = await obtenerPersonajePorId(personajeId);
 
 <Layout>
   <div
-    class="mt-20 min-h-screen flex flex-wrap justify-center items-center p-3 gap-5 max-w-screen"
+    class="mt-20 min-h-screen flex flex-col flex-wrap justify-center items-center p-3 gap-5 max-w-[1000px] mx-auto"
   >
-    <div class="flex flex-col justify-center items-center md:flex-row">
-      <TarjetaPersonaje
-        personaje={personaje}
-        class="h-[500px] max-w-[80vw]"
-        transition:name={"tarjeta-" + personaje.id}
-      />
-      <div class="flex flex-col justify-start items-center p-3 gap-5">
+    <div class="flex flex-col md:flex-row gap-5 justify-center items-center  md:items-start">
+      <div class="flex flex-col justify-center items-center gap-3">
         <h2 class="text-3xl text-start font-bold cinzel">
           {personaje.nombre}
           <Image
@@ -45,45 +40,45 @@ const personaje: Personaje = await obtenerPersonajePorId(personajeId);
             class="inline-block"
           />
         </h2>
-        <div
-          class="flex flex-wrap p-3 gap-3 justify-center items-center flex-grow"
-        >
-          <AnimacionGaleria
-            animacion={personaje.animaciones.find(
-              (a) => a.tipoAnimacionId === 1
-            ) as Animacion}
-            nombreDeGaleria="galeria-animaciones"
-            class="h-[200px] flex-grow aspect-video max-w-[500px]"
-          />
-          <AnimacionGaleria
-            animacion={personaje.animaciones.find(
-              (a) => a.tipoAnimacionId === 2
-            ) as Animacion}
-            nombreDeGaleria="galeria-animaciones"
-            class="h-[200px] flex-grow aspect-video max-w-[500px]"
-          />
-          <AnimacionGaleria
-            animacion={personaje.animaciones.find(
-              (a) => a.tipoAnimacionId === 3
-            ) as Animacion}
-            nombreDeGaleria="galeria-animaciones"
-            class="h-[200px] flex-grow aspect-video max-w-[500px]"
-          />
-        </div>
+        <TarjetaPersonaje
+          personaje={personaje}
+          class="h-[500px] max-w-[80vw]"
+          transition:name={"tarjeta-" + personaje.id}
+        />
       </div>
+      <a
+        data-fancybox="splash"
+        data-src={personaje.splashArtURL}
+        class="overflow-hidden flex-shrink-1 w-fit"
+      >
+        <img
+          src={personaje.splashArtURL}
+          class="rounded object-cover w-full cursor-pointer h-screen"
+          loading="lazy"
+        />
+      </a>
     </div>
 
-    <a
-      data-fancybox="splash"
-      data-src={personaje.splashArtURL}
-      class="overflow-hidden"
-    >
-      <img
-        src={personaje.splashArtURL}
-        class="rounded object-cover w-full cursor-pointer h-screen"
-        loading="lazy"
-      />
-    </a>
+    <section>
+      <TextoOrnamentado
+        ><h3 class="text-xl font-bold cinzel text-center">
+          Galeria de Animaciones
+        </h3></TextoOrnamentado
+      >
+      <div
+        class="flex flex-wrap p-3 gap-3 justify-center items-center flex-grow"
+      >
+        {
+          personaje.animaciones.map((animacion: Animacion) => (
+            <AnimacionGaleria
+              animacion={animacion}
+              class="h-50"
+              nombreDeGaleria="animaciones"
+            />
+          ))
+        }
+      </div>
+    </section>
 
     <div class="flex flex-col justify-center items-center p-3">
       <TextoOrnamentado
@@ -116,13 +111,13 @@ const personaje: Personaje = await obtenerPersonajePorId(personajeId);
         }
       </div>
     </div>
-
-    <Image
-      src="https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20210211/2021021114240369279.png"
-      alt="Genshin Impact"
-      width={1920}
-      height={1080}
-      class="w-screen h-screen fixed -z-10 top-0 left-0 blur-xs"
-    />
   </div>
+
+  <Image
+    src="https://webstatic.hoyoverse.com/upload/uploadstatic/contentweb/20210211/2021021114240369279.png"
+    alt="Genshin Impact"
+    width={1920}
+    height={1080}
+    class="w-screen h-screen fixed -z-10 top-0 left-0 blur-xs"
+  />
 </Layout>
