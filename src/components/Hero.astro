@@ -4,6 +4,7 @@ import { Image } from "astro:assets";
 import btnPlayBlanco from "../assets/images/icons/play-btn-blanco.png";
 import type { Video as VideoType } from "../types/Video";
 import TextoOrnamentado from "./TextoOrnamentado.astro";
+import portada from "../assets/images/portada.webp";
 
 const video: VideoType = {
   titulo: "Video de prueba",
@@ -15,14 +16,9 @@ const video: VideoType = {
 ---
 
 <div class="w-full h-screen relative flex flex-col justify-evenly items-center">
-  <video
-    src="/portada-video.mp4"
-    class="w-full h-full object-cover object-[35%] absolute left-0 -z-50"
-    preload="auto"
-    autoplay
-    loop
-    muted
-    playsinline></video>
+
+
+  <Image src={portada} alt="Portada" class="w-full h-full object-cover object-[35%] absolute left-0 -z-50" />
 
   <Image
     src={logo}
